@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import githubRouter from "./routes/github.js";
+import jobsRouter from "./routes/jobs.js";
 
 dotenv.config();
 
@@ -16,10 +17,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/api/github", githubRouter);
-
-// TODO: add a second router here, e.g. /api/jobs or /api/weather
-// import jobsRouter from "./routes/jobs.js";
-// app.use("/api/jobs", jobsRouter);
+app.use("/api/jobs", jobsRouter);
 
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`);
