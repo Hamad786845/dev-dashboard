@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 
+const API_BASE = import.meta.env.VITE_API_URL || "";
+
 function GithubActivityPanel() {
   const [state, setState] = useState({ status: "loading", data: null, error: null });
 
   useEffect(() => {
-    fetch("/api/github/activity")
+    fetch(`${API_BASE}/api/github/activity`)
       .then((res) => {
         if (!res.ok) throw new Error(`Request failed: ${res.status}`);
         return res.json();
@@ -38,7 +40,7 @@ function JobListingsPanel() {
   const [state, setState] = useState({ status: "loading", data: null, error: null });
 
   useEffect(() => {
-    fetch("/api/jobs/listings")
+    fetch(`${API_BASE}/api/jobs/listings`)
       .then((res) => {
         if (!res.ok) throw new Error(`Request failed: ${res.status}`);
         return res.json();
