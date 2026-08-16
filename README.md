@@ -12,3 +12,50 @@ A dashboard that aggregates data from multiple public APIs (GitHub activity, rem
 - **Frontend:** React + Vite
 
 ## Project Structure
+
+```
+dev-dashboard/
+├── backend/
+│   ├── server.js          # Express app entry point
+│   ├── routes/
+│   │   ├── github.js      # GitHub API integration (cached)
+│   │   └── jobs.js        # Remotive job listings integration (cached)
+│   ├── package.json
+│   └── .env.example
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+└── README.md
+```
+
+## Local Setup
+
+### Backend
+```bash
+cd backend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+## Roadmap
+1. ✅ Scaffold
+2. ✅ GitHub API route — pull recent public activity, with in-memory caching
+3. ✅ Second data source — remote job listings via the Remotive API
+4. ✅ Independent error/loading states per panel
+5. ✅ Deployed — backend on Render, frontend on Vercel
+6. Stretch ideas: swap in-memory cache for Redis, add a manual "refresh" button, add a third data source
+
+## Why this project
+Shows real backend engineering decisions — not just CRUD: handling multiple external dependencies, caching to avoid rate limits, graceful degradation when an API fails. Good talking points for interviews.
